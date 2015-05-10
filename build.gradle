@@ -1,0 +1,17 @@
+apply plugin: 'java'
+
+sourceCompatibility = JavaVersion.VERSION_1_7
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    compile 'commons-io:commons-io:2.4'
+    compile 'commons-logging:commons-logging:1.2'
+    compile 'com.google.jimfs:jimfs:1.0'
+    compile 'com.philvarner.clamavj:clamavj:0.2'
+    
+    testCompile 'junit:junit:4.+'
+}
