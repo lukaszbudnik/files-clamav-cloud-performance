@@ -15,13 +15,18 @@ Note: just for my own purposes in the `src/test/java` I have also added a few ot
 
 ## Test results
 
-Type of test | Environment | JUnit test name | Execution time
---- | --- | --- | :---: 
-Regular file system with clamfs | Dell laptop + bare-metal Ubuntu 12.04 | RegularFileSystemClamfsTest | 9.326s
-Java NIO Jimfs with clamavj | Dell laptop + bare-metal Ubuntu 12.04 JimfsFileSystemClamavjTest | 7.473s
-Regular file system with clamfs | Macbook Pro + VirtualBox Ubuntu 12.04 | RegularFileSystemClamfsTest | 35.544s
-Java NIO Jimfs with clamavj | MacBook Pro + VirtualBox Ubuntu 12.04 JimfsFileSystemClamavjTest | 11.504s
+All systems were running Ubuntu 12.04
+
+Test name | Machine | Execution time
+--- | --- | :---: 
+RegularFileSystemClamfsTest | Dell laptop - bare-metal | xxx
+JimfsFileSystemClamavjTest | Dell laptop - bare-metal | xxx
+RegularFileSystemClamfsTest | Macbook Pro - VirtualBox | 35.544s
+JimfsFileSystemClamavjTest | MacBook Pro - VirtualBox | 11.504s
+RegularFileSystemClamfsTest | AWS EC2 | 7.570s
+JimfsFileSystemClamavjTest | AWS EC2 | 4.268s
 
 Comments:
-* On bare-metal Ubuntu 12.04 the Java NIO Jimfs is slightly faster - 1.248.
-* On VirtualBox Ubuntu 12.04 the Java NIO Jimfs is three times faster - 3.09.
+* on bare-metal Ubuntu 12.04 the Java NIO Jimfs is slightly faster - xxx.
+* on VirtualBox Ubuntu 12.04 the Java NIO Jimfs is three times faster - 3.09.
+* on AWS EC2 Ubuntu 12.04 the Java NIO Jimfs is almost two times faster - 1.774.
