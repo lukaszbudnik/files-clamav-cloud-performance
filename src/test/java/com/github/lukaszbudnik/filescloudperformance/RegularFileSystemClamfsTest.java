@@ -6,6 +6,7 @@ import java.util.Random;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class RegularFileSystemClamfsTest {
@@ -18,7 +19,10 @@ public class RegularFileSystemClamfsTest {
 		
 		for (int i = 0; i < 10000; i++) {
 			File f = File.createTempFile("prefix", "suffix", clamfsDirectory);
-			FileUtils.writeByteArrayToFile(f, data);
+			f.deleteOnExit();
+			FileUtils.writeByteArrayToFile(f, data);	
+			byte[] dataRead = FileUtils.readFileToByteArray(f);
+			Assert.assertEquals(data.length, dataRead.length);
 		}
 		
 		long after = System.currentTimeMillis();
@@ -37,7 +41,10 @@ public class RegularFileSystemClamfsTest {
 		
 		for (int i = 0; i < 100; i++) {
 			File f = File.createTempFile("prefix", "suffix", clamfsDirectory);
+			f.deleteOnExit();
 			FileUtils.writeByteArrayToFile(f, data);
+			byte[] dataRead = FileUtils.readFileToByteArray(f);
+			Assert.assertEquals(data.length, dataRead.length);
 		}
 		
 		long after = System.currentTimeMillis();

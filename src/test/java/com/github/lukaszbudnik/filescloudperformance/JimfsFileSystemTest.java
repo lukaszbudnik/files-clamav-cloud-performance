@@ -9,6 +9,7 @@ import java.util.Random;
 import java.util.UUID;
 
 import org.apache.commons.io.IOUtils;
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.google.common.jimfs.Configuration;
@@ -28,6 +29,8 @@ public class JimfsFileSystemTest {
 		for (int i = 0; i < 10000; i++) {
 			Path p = fs.getPath(UUID.randomUUID().toString());
 			Files.write(p, data, StandardOpenOption.CREATE_NEW);
+			byte[] dataRead = Files.readAllBytes(p);
+			Assert.assertEquals(data.length, dataRead.length);
 		}
 		
 		long after = System.currentTimeMillis();
@@ -49,6 +52,8 @@ public class JimfsFileSystemTest {
 		for (int i = 0; i < 100; i++) {
 			Path p = fs.getPath(UUID.randomUUID().toString());
 			Files.write(p, data, StandardOpenOption.CREATE_NEW);
+			byte[] dataRead = Files.readAllBytes(p);
+			Assert.assertEquals(data.length, dataRead.length);
 		}
 		
 		long after = System.currentTimeMillis();
