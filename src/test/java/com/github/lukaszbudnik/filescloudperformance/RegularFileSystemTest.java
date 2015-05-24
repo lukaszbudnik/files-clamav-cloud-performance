@@ -6,6 +6,7 @@ import java.util.Random;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class RegularFileSystemTest {
@@ -17,7 +18,10 @@ public class RegularFileSystemTest {
 		
 		for (int i = 0; i < 10000; i++) {
 			File f = File.createTempFile("prefix", "suffix");
+			f.deleteOnExit();
 			FileUtils.writeByteArrayToFile(f, data);
+			byte[] dataRead = FileUtils.readFileToByteArray(f);
+			Assert.assertEquals(data.length, dataRead.length);
 		}
 		
 		long after = System.currentTimeMillis();
@@ -36,7 +40,10 @@ public class RegularFileSystemTest {
 		
 		for (int i = 0; i < 100; i++) {
 			File f = File.createTempFile("prefix", "suffix");
+			f.deleteOnExit();
 			FileUtils.writeByteArrayToFile(f, data);
+			byte[] dataRead = FileUtils.readFileToByteArray(f);
+			Assert.assertEquals(data.length, dataRead.length);
 		}
 		
 		long after = System.currentTimeMillis();
